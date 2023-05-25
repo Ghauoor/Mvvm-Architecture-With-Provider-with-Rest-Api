@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider_mvvm/home_screen.dart';
-import 'package:provider_mvvm/state_full_screen.dart';
+import 'package:provider_mvvm/basics/home_screen.dart';
+import 'package:provider_mvvm/basics/state_full_screen.dart';
 
 void main() {
   runApp(const MyApp());
