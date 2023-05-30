@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_mvvm/provider/count_provider.dart';
 
-class CountExample extends StatefulWidget {
+class CountExample extends StatelessWidget {
   const CountExample({super.key});
 
-  @override
-  State<CountExample> createState() => _CountExampleState();
-}
-
-class _CountExampleState extends State<CountExample> {
   @override
   Widget build(BuildContext context) {
     print('build');
