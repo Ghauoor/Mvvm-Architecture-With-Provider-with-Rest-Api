@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_mvvm/provider/count_provider.dart';
 import 'package:provider_mvvm/provider/example_two_provider.dart';
-import 'package:provider_mvvm/screen/examplet_two_screen.dart';
+import 'package:provider_mvvm/provider/favourite_provider.dart';
+
+import 'screen/favourite/favourite_scree.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,6 +23,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => ExampleTwoProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => FavouriteProvider(),
+        ),
       ],
       child: MaterialApp(
         title: 'REST With Provder MVVM',
@@ -28,7 +33,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ExampleTwoScreen(),
+        home: const FavouriteScreen(),
       ),
     );
   }
