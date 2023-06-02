@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:provider_mvvm/provider/favourite_provider.dart';
+import 'package:provider_mvvm/screen/favourite/favourite_item_screen.dart';
 
 class FavouriteScreen extends StatefulWidget {
   const FavouriteScreen({super.key});
@@ -19,6 +20,19 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Favourite example with Provider'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FavouriteitemScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.favorite_border_sharp),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -26,10 +40,15 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             child: ListView.builder(
               itemCount: 100,
               itemBuilder: (BuildContext context, int index) {
-                return Consumer<FavouriteProvider>(builder: (context, value, child) {
+                return Consumer<FavouriteProvider>(
+                    builder: (context, value, child) {
                   return ListTile(
                     onTap: () {
-                     value.addAndRemoveItems(index);
+                      if (!value.selectedArr.contains(index)) {
+                        value.addItems(index);
+                      } else {
+                        value.removeItem(index);
+                      }
 
                       // setState(() {
                       //   if (selectedArray.contains(index)) {
@@ -40,11 +59,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                       // });
                     },
                     title: Text('item ${index.toString()}'),
-                    trailing: value.selectedArr.contains(index)
-                        ? const Icon(Icons.favorite)
-                        : const Icon(
-                            Icons.favorite_border,
-                          ),
+                    trailing: Icon(
+                      Icons.favorite,
+                      color: value.selectedArr.contains(index)
+                          ? Colors.red
+                          : Colors.grey,
+                    ),
                   );
                 });
               },

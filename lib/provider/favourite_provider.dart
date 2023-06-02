@@ -4,12 +4,13 @@ class FavouriteProvider with ChangeNotifier {
   final List<int> _selectedArr = [];
   List<int> get selectedArr => _selectedArr;
 
-  void addAndRemoveItems(int index) {
-    if (selectedArr.contains(index)) {
-      selectedArr.remove(index);
-    } else {
-      selectedArr.add(index);
-    }
+  void addItems(int index) {
+    selectedArr.add(index);
+    notifyListeners();
+  }
+
+  void removeItem(int index) {
+    selectedArr.remove(index);
     notifyListeners();
   }
 }
