@@ -14,8 +14,21 @@ class ValueNotifierListener extends StatelessWidget {
         child: ValueListenableBuilder(
           valueListenable: _counter,
           builder: (context, value, child) {
-            return Text(
-              _counter.value.toString(),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  _counter.value.toString(),
+                  style: const TextStyle(fontSize: 50),
+                ),
+                const SizedBox(height: 10.0),
+                ElevatedButton(
+                    onPressed: () {
+                      _counter.value = 0;
+                    },
+                    child: const Text('Reset'))
+              ],
             );
           },
         ),
